@@ -5,11 +5,21 @@ import Typography from "@mui/material/Typography"
 import Alert from "@mui/material/Alert"
 import Stack from "@mui/material/Stack"
 import useAirshipStore from "../airship/AirshipStore"
-import { blue, green, blueGrey } from "@mui/material/colors"
+import { blue, green, blueGrey, yellow } from "@mui/material/colors"
 
 export const ResultsPanel = () => {
-	const { L, D, V, S, a, xCB, performance, surfaceArea, integratedVolume } =
-		useAirshipStore()
+	const {
+		L,
+		D,
+		V,
+		S,
+		a,
+		xCB,
+		performance,
+		surfaceArea,
+		integratedVolume,
+		cost,
+	} = useAirshipStore()
 
 	return (
 		<Box sx={{ p: 3, width: "100%" }}>
@@ -148,7 +158,7 @@ export const ResultsPanel = () => {
 						>
 							Integration Results
 						</Typography>
-						<Grid container spacing={2} columns={6}>
+						<Grid container spacing={2} columns={12}>
 							<Grid size={{ xs: 6, sm: 6, lg: 6 }}>
 								<Paper
 									elevation={0}
@@ -196,6 +206,31 @@ export const ResultsPanel = () => {
 										fontFamily='monospace'
 									>
 										{integratedVolume.toFixed(2)} m³
+									</Typography>
+								</Paper>
+							</Grid>
+							<Grid size={{ xs: 6, sm: 6, lg: 6 }}>
+								<Paper
+									elevation={0}
+									sx={{
+										p: 2,
+										borderRadius: 1,
+										backgroundColor: yellow[50],
+										textAlign: "center",
+									}}
+								>
+									<Typography
+										variant='body2'
+										color='success.main'
+									>
+										Cost (Estimation)
+									</Typography>
+									<Typography
+										variant='h5'
+										fontWeight='bold'
+										fontFamily='monospace'
+									>
+										{cost.toFixed(2)} €
 									</Typography>
 								</Paper>
 							</Grid>

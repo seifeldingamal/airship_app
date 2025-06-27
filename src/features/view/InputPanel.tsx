@@ -12,7 +12,7 @@ export const InputPanel: React.FC = () => {
 	const {
 		inputs: {
 			n,
-			// nG,
+			nG,
 			L2D,
 			Vb,
 			m,
@@ -91,14 +91,14 @@ export const InputPanel: React.FC = () => {
 			min: 10,
 			max: 100,
 		},
-		// {
-		// 	id: "nG",
-		// 	label: "Number of Gores (nG)",
-		// 	value: nG,
-		// 	type: "number",
-		// 	min: 5,
-		// 	max: 20,
-		// },
+		{
+			id: "nG",
+			label: "Number of Gores (nG)",
+			value: nG,
+			type: "number",
+			min: 5,
+			max: 20,
+		},
 		{
 			id: "L2D",
 			label: "L/D Ratio",

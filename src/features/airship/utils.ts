@@ -204,6 +204,8 @@ export const calculateInitialState = (state: AppState) => {
 	const { patternPoints, surfaceArea, integratedVolume } =
 		calculatePatternPoints(a, L, D, n, nG, PI)
 
+	const cost = calculateCost(nG, L)
+
 	return {
 		L,
 		D,
@@ -215,5 +217,10 @@ export const calculateInitialState = (state: AppState) => {
 		patternPoints,
 		surfaceArea,
 		integratedVolume,
+		cost,
 	}
+}
+
+const calculateCost = (nG: number, L: number) => {
+	return nG * L * 11
 }

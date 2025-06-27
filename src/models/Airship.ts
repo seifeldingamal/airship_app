@@ -11,6 +11,7 @@ export interface Airship {
 	surfaceArea: number
 	integratedVolume: number
 	performance: PerformanceMetrics
+	cost: number
 }
 
 interface Inputs {

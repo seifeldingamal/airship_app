@@ -8,7 +8,11 @@ import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography"
 import { useLoader } from "@react-three/fiber"
-import Texture from "../../assets/metallic-texture.jpg"
+
+const texturePath =
+	process.env.NODE_ENV === "production"
+		? "/airship_app/assets/metallic-texture.jpg"
+		: "./src/assets/metallic-texture.jpg"
 
 const Pattern2DView = () => {
 	const { patternPoints, xCB } = useAirshipStore()
@@ -58,7 +62,7 @@ const Pattern2DView = () => {
 		return bufferGeometry
 	}, [patternPoints])
 
-	const texture = useLoader(TextureLoader, Texture)
+	const texture = useLoader(TextureLoader, texturePath)
 
 	if (!geometry) return null
 

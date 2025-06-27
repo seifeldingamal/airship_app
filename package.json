@@ -6,11 +6,11 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc && vite build && cp .nojekyll dist/",
+		"build": "tsc && vite build && cp .nojekyll dist/ && cp ./src/assets/metallic-texture.jpg dist/assets/",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d dist"
+		"deploy": "gh-pages -d dist --dotfiles"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.14.0",

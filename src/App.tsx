@@ -19,6 +19,11 @@ const MemoizedAirship3DView = memo(Airship3DView)
 const MemoizedAirshipGraph = memo(AirshipGraph)
 
 export default function App() {
+	// main.tsx or index.tsx
+	console.log("Environment Variables:")
+	console.log("BASE_URL:", import.meta.env.BASE_URL)
+	console.log("MODE:", import.meta.env.MODE)
+	console.log("DEPLOY_URL:", import.meta.env.VITE_DEPLOY_URL)
 	return (
 		<Container
 			sx={{

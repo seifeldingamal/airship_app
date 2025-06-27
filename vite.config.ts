@@ -2,6 +2,7 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 
 export default defineConfig({
+	base: process.env.NODE_ENV === "production" ? "./" : "./src/",
 	plugins: [react()],
 	resolve: {
 		alias: {
@@ -17,6 +18,9 @@ export default defineConfig({
 		outDir: "dist",
 		rollupOptions: {
 			output: {
+				entryFileNames: `assets/[name]-[hash].js`,
+				chunkFileNames: `assets/[name]-[hash].js`,
+				assetFileNames: `assets/[name]-[hash][extname]`,
 				manualChunks: {
 					three: ["three"],
 					mui: ["@mui/material"],

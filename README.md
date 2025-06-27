@@ -16,7 +16,7 @@ A modern web application for designing airships using the Gertler 4621 Shape Mod
 ### Prerequisites
 
 -   [Node.js](https://nodejs.org/) (v18 or newer recommended)
--   [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+-   [npm](https://www.npmjs.com/)
 
 ### Installation
 

@@ -1,10 +1,10 @@
 import { useRef, useEffect } from "react"
 import useAirshipStore from "../airship/AirshipStore"
-import * as d3 from "d3"
+import { select, scaleLinear, axisBottom, axisLeft, line } from "d3"
 import Card from "@mui/material/Card"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
-import { CardContent } from "@mui/material"
+import CardContent from "@mui/material/CardContent"
 import { blue, red } from "@mui/material/colors"
 
 export const AirshipGraph = () => {
@@ -18,7 +18,7 @@ export const AirshipGraph = () => {
 	useEffect(() => {
 		if (!svgRef.current || !patternPoints.length) return
 
-		const svg = d3.select(svgRef.current)
+		const svg = select(svgRef.current)
 		svg.selectAll("*").remove()
 
 		// Calculate min/max for x and y
@@ -31,25 +31,22 @@ export const AirshipGraph = () => {
 		const xPad = (maxX - minX) * 0.3
 		const yPad = (maxY - minY) * 0.3
 
-		const x = d3
-			.scaleLinear()
+		const x = scaleLinear()
 			.domain([minX - xPad, maxX + xPad])
 			.range([margin.left, width - margin.right])
-		const y = d3
-			.scaleLinear()
+		const y = scaleLinear()
 			.domain([minY - yPad, maxY + yPad])
 			.range([height - margin.bottom, margin.top])
 
 		svg.append("g")
 			.attr("transform", "translate(0," + height + ")")
-			.call(d3.axisBottom(x))
+			.call(axisBottom(x))
 
 		svg.append("g")
 			.attr("transform", "translate(" + margin.left + ",0)")
-			.call(d3.axisLeft(y))
+			.call(axisLeft(y))
 
-		const lineUpper = d3
-			.line<{ x: number; r: number }>()
+		const lineUpper = line<{ x: number; r: number }>()
 			.x((d) => x(d.x))
 			.y((d) => y(d.r))
 
@@ -61,8 +58,7 @@ export const AirshipGraph = () => {
 			.attr("stroke-dasharray", "4 2")
 			.attr("d", lineUpper)
 
-		const lineLower = d3
-			.line<{ x: number; nr: number }>()
+		const lineLower = line<{ x: number; nr: number }>()
 			.x((d) => x(d.x))
 			.y((d) => y(d.nr))
 

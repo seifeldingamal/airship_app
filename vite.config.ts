@@ -10,5 +10,20 @@ export default defineConfig({
 	},
 	optimizeDeps: {
 		include: ["@react-three/fiber", "@react-three/drei"],
+		exclude: ["three"],
+	},
+	build: {
+		target: "esnext",
+		outDir: "dist",
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					three: ["three"],
+					mui: ["@mui/material"],
+					vendor: ["react", "react-dom"],
+				},
+			},
+		},
+		chunkSizeWarningLimit: 1000,
 	},
 })

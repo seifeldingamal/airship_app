@@ -1,7 +1,6 @@
-import { memo } from "react"
+import { lazy, memo, Suspense } from "react"
 import { InputPanel } from "./features/view/InputPanel"
 import { ResultsPanel } from "./features/view/ResultsPanel"
-import { Airship3DView } from "./features/airship/Airship3DView"
 import Container from "@mui/material/Container"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
@@ -10,6 +9,9 @@ import Card from "@mui/material/Card"
 import Divider from "@mui/material/Divider"
 import { AirshipGraph } from "./features/airship/AirshipGraph"
 import Footer from "./components/Footer"
+import CircularProgress from "@mui/material/CircularProgress"
+
+const Airship3DView = lazy(() => import("./features/airship/Airship3DView"))
 
 const MemoizedInputPanel = memo(InputPanel)
 const MemoizedResultsPanel = memo(ResultsPanel)
@@ -57,7 +59,9 @@ export default function App() {
 				</Grid>
 				<Grid size={{ xs: 12, md: 12, lg: 6 }}>
 					<Box mb={4}>
-						<MemoizedAirship3DView />
+						<Suspense fallback={<CircularProgress />}>
+							<MemoizedAirship3DView />
+						</Suspense>
 					</Box>
 					<Box mb={4}>
 						<MemoizedAirshipGraph />

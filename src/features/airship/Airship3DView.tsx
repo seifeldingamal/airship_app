@@ -1,14 +1,14 @@
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls, Environment } from "@react-three/drei"
 import { useMemo } from "react"
-import * as THREE from "three"
+import { BufferGeometry, Float32BufferAttribute, TextureLoader } from "three"
 import useAirshipStore from "./AirshipStore"
-import { Box } from "@mui/material"
+import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography"
 import { useLoader } from "@react-three/fiber"
-import { TextureLoader } from "three"
+import Texture from "../../assets/metallic-texture.jpg"
 
 const Pattern2DView = () => {
 	const { patternPoints, xCB } = useAirshipStore()
@@ -48,18 +48,17 @@ const Pattern2DView = () => {
 			}
 		}
 
-		const bufferGeometry = new THREE.BufferGeometry()
+		const bufferGeometry = new BufferGeometry()
 		bufferGeometry.setAttribute(
 			"position",
-			new THREE.Float32BufferAttribute(vertices, 3)
+			new Float32BufferAttribute(vertices, 3)
 		)
 		bufferGeometry.setIndex(indices)
 		bufferGeometry.computeVertexNormals()
 		return bufferGeometry
 	}, [patternPoints])
 
-	// Optional: Load a texture (uncomment if you have a texture file)
-	const texture = useLoader(TextureLoader, "src/assets/metallic-texture.jpg")
+	const texture = useLoader(TextureLoader, Texture)
 
 	if (!geometry) return null
 
@@ -77,7 +76,7 @@ const Pattern2DView = () => {
 	)
 }
 
-export const Airship3DView = () => {
+const Airship3DView = () => {
 	const { L } = useAirshipStore()
 	const cameraPosition: [number, number, number] = [L / 2, 0, L * 1.5]
 
@@ -123,3 +122,5 @@ export const Airship3DView = () => {
 		</Card>
 	)
 }
+
+export default Airship3DView

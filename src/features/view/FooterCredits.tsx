@@ -1,13 +1,11 @@
 import { useRef } from "react"
-import {
-	Typography,
-	Accordion,
-	AccordionSummary,
-	AccordionDetails,
-	Link,
-	Collapse,
-	Card,
-} from "@mui/material"
+import Typography from "@mui/material/Typography"
+import Card from "@mui/material/Card"
+import Collapse from "@mui/material/Collapse"
+import Accordion from "@mui/material/Accordion"
+import AccordionSummary from "@mui/material/AccordionSummary"
+import AccordionDetails from "@mui/material/AccordionDetails"
+import Link from "@mui/material/Link"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 
 interface FooterCreditsProps {

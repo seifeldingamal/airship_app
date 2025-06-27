@@ -1,19 +1,15 @@
-import { Box, Typography, Grid, Paper, Alert, Stack } from "@mui/material"
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Grid"
+import Paper from "@mui/material/Paper"
+import Typography from "@mui/material/Typography"
+import Alert from "@mui/material/Alert"
+import Stack from "@mui/material/Stack"
 import useAirshipStore from "../airship/AirshipStore"
 import { blue, green, blueGrey } from "@mui/material/colors"
 
 export const ResultsPanel = () => {
-	const {
-		L,
-		D,
-		V,
-		S,
-		a,
-		xCB,
-		performance,
-		surfaceArea,
-		integratedVolume,
-	} = useAirshipStore()
+	const { L, D, V, S, a, xCB, performance, surfaceArea, integratedVolume } =
+		useAirshipStore()
 
 	return (
 		<Box sx={{ p: 3, width: "100%" }}>

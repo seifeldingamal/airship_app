@@ -159,7 +159,7 @@ export const ResultsPanel = () => {
 							Integration Results
 						</Typography>
 						<Grid container spacing={2} columns={12}>
-							<Grid size={{ xs: 6, sm: 6, lg: 6 }}>
+							<Grid size={{ xs: 12, sm: 12, lg: 6 }}>
 								<Paper
 									elevation={0}
 									sx={{
@@ -184,7 +184,7 @@ export const ResultsPanel = () => {
 									</Typography>
 								</Paper>
 							</Grid>
-							<Grid size={{ xs: 6, sm: 6, lg: 6 }}>
+							<Grid size={{ xs: 12, sm: 12, lg: 6 }}>
 								<Paper
 									elevation={0}
 									sx={{
@@ -209,7 +209,7 @@ export const ResultsPanel = () => {
 									</Typography>
 								</Paper>
 							</Grid>
-							<Grid size={{ xs: 6, sm: 6, lg: 6 }}>
+							<Grid size={{ xs: 12, sm: 12, lg: 6 }}>
 								<Paper
 									elevation={0}
 									sx={{

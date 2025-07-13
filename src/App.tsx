@@ -10,6 +10,8 @@ import Divider from "@mui/material/Divider"
 import { AirshipGraph } from "./features/airship/AirshipGraph"
 import Footer from "./components/Footer"
 import CircularProgress from "@mui/material/CircularProgress"
+import RedirectComponent from "./components/ui/RedirectButton"
+import ContactForm from "./components/ContactForm"
 
 const Airship3DView = lazy(() => import("./features/airship/Airship3DView"))
 
@@ -19,7 +21,6 @@ const MemoizedAirship3DView = memo(Airship3DView)
 const MemoizedAirshipGraph = memo(AirshipGraph)
 
 export default function App() {
-	// main.tsx or index.tsx
 	console.log("Environment Variables:")
 	console.log("BASE_URL:", import.meta.env.BASE_URL)
 	console.log("MODE:", import.meta.env.MODE)
@@ -33,7 +34,7 @@ export default function App() {
 				paddingTop: 4,
 			}}
 		>
-			<Box component='header' mb={8} textAlign='center'>
+			<Box component='header' mb={4} textAlign='center'>
 				<Typography
 					variant='h3'
 					fontWeight='bold'
@@ -43,8 +44,10 @@ export default function App() {
 					Airship Design Calculator
 				</Typography>
 				<Typography variant='subtitle1' color='text.secondary'>
-					Gertler 4621 Shape Model
+					Gertler Shape Model
 				</Typography>
+
+				<RedirectComponent />
 			</Box>
 
 			<Grid container columnSpacing={3} rowSpacing={4} mb={2}>
@@ -70,6 +73,9 @@ export default function App() {
 					</Box>
 					<Box mb={4}>
 						<MemoizedAirshipGraph />
+					</Box>
+					<Box>
+						<ContactForm />
 					</Box>
 				</Grid>
 			</Grid>

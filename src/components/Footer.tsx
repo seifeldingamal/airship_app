@@ -24,7 +24,7 @@ const Footer = () => {
 				}}
 			>
 				<Typography variant='body2' color='textSecondary'>
-					© 2025 Airship Calculator{"   "}
+					© 2025 Airship Design Calculator{"   "}
 				</Typography>
 				<Link
 					component='button'

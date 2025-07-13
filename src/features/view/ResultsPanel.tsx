@@ -8,18 +8,7 @@ import useAirshipStore from "../airship/AirshipStore"
 import { blue, green, blueGrey, yellow } from "@mui/material/colors"
 
 export const ResultsPanel = () => {
-	const {
-		L,
-		D,
-		V,
-		S,
-		a,
-		xCB,
-		performance,
-		surfaceArea,
-		integratedVolume,
-		cost,
-	} = useAirshipStore()
+	const { L, D, V, a, nG, xCB, summary } = useAirshipStore()
 
 	return (
 		<Box sx={{ p: 3, width: "100%" }}>
@@ -41,27 +30,27 @@ export const ResultsPanel = () => {
 						<Stack spacing={1}>
 							<ResultItem
 								label='Length (L)'
-								value={L.toFixed(2)}
+								value={L.toFixed(3)}
 								unit='m'
 							/>
 							<ResultItem
 								label='Diameter (D)'
-								value={D.toFixed(2)}
+								value={D.toFixed(3)}
 								unit='m'
 							/>
 							<ResultItem
 								label='Volume (V)'
-								value={V.toFixed(2)}
+								value={V.toFixed(3)}
 								unit='m³'
 							/>
 							<ResultItem
-								label='Surface Area (S)'
-								value={S.toFixed(2)}
-								unit='m²'
+								label='Number of Gores (nG)'
+								value={nG}
+								unit='(-)'
 							/>
 							<ResultItem
 								label='Center of Buoyancy (xCB)'
-								value={xCB.toFixed(2)}
+								value={xCB.toFixed(3)}
 								unit='m from bow'
 							/>
 						</Stack>
@@ -99,13 +88,14 @@ export const ResultsPanel = () => {
 										}}
 									>
 										<Typography
-											variant='caption'
+											variant='body1'
 											color='text.secondary'
 										>
 											a<sub>{index + 1}</sub>
 										</Typography>
 										<Typography
 											variant='body2'
+											fontWeight='bold'
 											fontFamily='monospace'
 											sx={{ mt: 0.5 }}
 										>
@@ -130,19 +120,13 @@ export const ResultsPanel = () => {
 						<Stack spacing={1}>
 							<ResultItem
 								label='Envelope Weight'
-								value={performance.envelopeWeight.toFixed(2)}
+								value={summary.envelopeWeight.toFixed(3)}
 								unit='kg'
 							/>
 							<ResultItem
 								label='Lift Capacity'
-								value={performance.liftCapacity.toFixed(2)}
+								value={summary.liftCapacity.toFixed(3)}
 								unit='kg'
-							/>
-							<ResultItem
-								label='Surface Coefficient'
-								value={performance.surfaceCoefficient.toFixed(
-									4
-								)}
 							/>
 						</Stack>
 					</Box>
@@ -163,24 +147,27 @@ export const ResultsPanel = () => {
 								<Paper
 									elevation={0}
 									sx={{
-										p: 2,
+										p: 1.5,
 										borderRadius: 1,
 										backgroundColor: blue[50],
 										textAlign: "center",
+										display: "flex",
+										flexDirection: "column",
+										justifyContent: "space-around",
 									}}
 								>
 									<Typography
 										variant='body2'
 										color='primary.main'
 									>
-										Surface Area (Calculated)
+										Surface Area
 									</Typography>
 									<Typography
-										variant='h5'
+										variant='body1'
 										fontWeight='bold'
 										fontFamily='monospace'
 									>
-										{surfaceArea.toFixed(2)} m²
+										{summary.surfaceArea.toFixed(3)} m²
 									</Typography>
 								</Paper>
 							</Grid>
@@ -188,10 +175,14 @@ export const ResultsPanel = () => {
 								<Paper
 									elevation={0}
 									sx={{
-										p: 2,
+										height: "100%",
+										p: 1.5,
 										borderRadius: 1,
 										backgroundColor: green[50],
 										textAlign: "center",
+										display: "flex",
+										flexDirection: "column",
+										justifyContent: "space-around",
 									}}
 								>
 									<Typography
@@ -201,48 +192,51 @@ export const ResultsPanel = () => {
 										Volume (Integrated)
 									</Typography>
 									<Typography
-										variant='h5'
+										variant='body1'
 										fontWeight='bold'
 										fontFamily='monospace'
 									>
-										{integratedVolume.toFixed(2)} m³
+										{summary.integratedVolume.toFixed(3)} m³
 									</Typography>
 								</Paper>
 							</Grid>
-							<Grid size={{ xs: 12, sm: 12, lg: 6 }}>
+							<Grid size={{ xs: 12, sm: 12, lg: 12 }}>
 								<Paper
 									elevation={0}
 									sx={{
-										p: 2,
+										p: 3,
 										borderRadius: 1,
 										backgroundColor: yellow[50],
 										textAlign: "center",
+										display: "flex",
+										flexDirection: "column",
+										justifyContent: "space-around",
 									}}
 								>
 									<Typography
 										variant='body2'
 										color='success.main'
 									>
-										Cost (Estimation)
+										Cost excl. VAT (Estimation)
 									</Typography>
 									<Typography
-										variant='h5'
+										variant='body1'
 										fontWeight='bold'
 										fontFamily='monospace'
 									>
-										{cost.toFixed(2)} €
+										{summary.cost.toFixed(0)} €
 									</Typography>
 								</Paper>
 							</Grid>
 						</Grid>
 
-						{Math.abs(integratedVolume - V) > 0.01 && (
+						{Math.abs(summary.integratedVolume - V) > 0.01 && (
 							<Alert severity='warning' sx={{ mt: 2 }}>
 								Note: Integrated volume differs from theoretical
-								volume by {(integratedVolume - V).toFixed(2)} m³
-								(
+								volume by{" "}
+								{(summary.integratedVolume - V).toFixed(3)} m³ (
 								{Math.abs(
-									((integratedVolume - V) / V) * 100
+									((summary.integratedVolume - V) / V) * 100
 								).toFixed(1)}
 								%)
 							</Alert>
@@ -264,7 +258,7 @@ const ResultItem = ({ label, value, unit = "(-)" }: ResultItemProps) => (
 	<Grid
 		container
 		spacing={2}
-		alignItems='center'
+		alignItems='end'
 		justifyContent='space-between'
 		columns={2}
 	>

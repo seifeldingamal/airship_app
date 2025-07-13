@@ -1,12 +1,16 @@
 import Typography from "@mui/material/Typography"
 import Box from "@mui/material/Box"
 import Slider from "@mui/material/Slider"
+import TextField from "@mui/material/TextField"
 
 interface SliderProps {
 	id: string
 	label?: string
 	value: number | number[]
-	onChange: (event: Event, newValue: number | number[]) => void
+	onChange: (
+		event: Event | React.ChangeEvent<HTMLInputElement>,
+		newValue: number | number[]
+	) => void
 	min?: number
 	max?: number
 	step?: number
@@ -53,21 +57,80 @@ const SliderField: React.FC<SliderProps> = ({
 		typeof step === "number" ? step : 1
 	)
 
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const newValue = Number(e.target.value)
+		if (!isNaN(newValue)) {
+			onChange(e, newValue)
+		}
+	}
+
 	return (
 		<Box sx={{ width: "100%", paddingRight: 8 }}>
 			{label && (
-				<Box sx={{ display: "flex", alignItems: "center" }}>
-					<Typography id={id} gutterBottom>
+				<Box
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						minHeight: 36,
+						flexDirection: "column",
+						gap: 1,
+					}}
+				>
+					<Typography
+						id={id}
+						gutterBottom
+						sx={{
+							fontWeight: "bold",
+							fontFamily: "monospace",
+							color: "#222b3d",
+							whiteSpace: "wrap",
+						}}
+					>
 						{label}:
 					</Typography>
-					<Typography
-						color='#1976d2'
-						gutterBottom
-						sx={{ marginLeft: 4, fontWeight: "bold" }}
-						fontFamily='monospace'
-					>
-						{value}
-					</Typography>
+					<TextField
+						variant='standard'
+						type='number'
+						value={typeof value === "number" ? value : value[0]}
+						onChange={handleInputChange}
+						slotProps={{
+							input: {
+								inputProps: {
+									min,
+									max,
+									step,
+									style: {
+										marginLeft: "10px",
+										fontWeight: "bold",
+										fontFamily: "monospace",
+										color: "#1976d2",
+										textAlign: "center",
+										background: "transparent",
+										fontSize: 14,
+										width: `calc(${
+											String(value).length * 2
+										}ch)`,
+										minWidth: 40,
+										maxWidth: 80,
+										transition: "width 0.2s",
+									},
+								},
+							},
+						}}
+						sx={{
+							"& .MuiInputBase-root": {
+								fontFamily: "monospace",
+								fontWeight: "bold",
+								color: "#1976d2",
+							},
+							"& .MuiInput-underline:before": {
+								borderColor: "#1976d2",
+							},
+							"& .MuiInput-underline:hover:before": {
+								borderColor: "#1976d2",
+							},
+						}}
+					/>
 				</Box>
 			)}
 			<Slider
@@ -80,6 +143,7 @@ const SliderField: React.FC<SliderProps> = ({
 				onChange={onChange}
 				disabled={disabled}
 				sx={{
+					m: 1,
 					color: "#1976d2",
 					height: 8,
 					"& .MuiSlider-thumb": {

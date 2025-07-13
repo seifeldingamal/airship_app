@@ -5,18 +5,14 @@ export interface Airship {
 	L: number
 	D: number
 	V: number
-	S: number
+	nG: number
 	xCB: number
 	patternPoints: PatternPoint[]
-	surfaceArea: number
-	integratedVolume: number
-	performance: PerformanceMetrics
-	cost: number
+	summary: Summary
 }
 
 interface Inputs {
 	n: number
-	nG: number
 	L2D: number
 	Vb: number
 	m: number
@@ -26,7 +22,7 @@ interface Inputs {
 	rhoS: number
 }
 
-interface PatternPoint {
+export interface PatternPoint {
 	s: number
 	phi: number
 	x2L: number
@@ -45,17 +41,22 @@ interface PatternPoint {
 	h: number
 	sPrime: number
 	theta: number
+	thetaDegree: number
 	xP: number
 	yP: number
 	nyP: number
 	dxP: number
 	dSPrime: number
+	SV: number
 }
 
-interface PerformanceMetrics {
+interface Summary {
 	envelopeWeight: number
 	liftCapacity: number
 	surfaceCoefficient: number
+	surfaceArea: number
+	integratedVolume: number
+	cost: number
 }
 
 export type AppState = Airship & {

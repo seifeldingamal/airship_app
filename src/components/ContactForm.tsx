@@ -86,7 +86,7 @@ const ContactForm = () => {
 	}
 
 	return (
-		<Box align='center' pt={4}>
+		<Box display='flex' justifyContent='center' pt={4}>
 			<Button
 				variant='outlined'
 				color='primary'
@@ -162,11 +162,9 @@ const ContactForm = () => {
 							required
 						/>
 						<Box
-							sx={{
-								display: "flex",
-								justifyContent: "space-between",
-								alignItems: "center",
-							}}
+							display='flex'
+							justifyContent='space-between'
+							alignItems='center'
 						>
 							<Typography
 								mt={2}

@@ -321,7 +321,7 @@ export const calculateInitialState = (state: AppState) => {
 		PI
 	)
 
-	const cost = calculateCost(nG, patternPoints[n - 1])
+	const cost = calculateCost(nG, patternPoints[n])
 
 	return {
 		L,
@@ -341,7 +341,6 @@ export const calculateInitialState = (state: AppState) => {
 }
 
 const calculateCost = (nG: number, point: PatternPoint) => {
-	const S = point.cumulativeS + 0.2
-	const roundedS = Math.ceil(S / 10) * 10
+	const roundedS = Math.ceil(point.cumulativeS / 10) * 10
 	return roundedS * nG * 11
 }

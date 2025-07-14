@@ -65,6 +65,7 @@ const ContactForm = () => {
 		const data = {
 			...formData,
 			...inputs,
+			rhoS: inputs.rhoS / 1000,
 		}
 
 		const blob = new Blob([JSON.stringify(data, null, 2)], {

@@ -89,7 +89,7 @@ export const InputPanel: React.FC = () => {
 			type: "number",
 			step: 0.1,
 			min: 0.1,
-			max: 10,
+			max: 20,
 		},
 	]
 

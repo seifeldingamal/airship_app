@@ -116,11 +116,15 @@ const FooterCredits: React.FC<FooterCreditsProps> = ({ expanded }) => {
 								<li>Johannes Eissing, 19.11.2019</li>
 								<li>
 									Johannes Eissing, 2016/11/32, added General
-									Public License Agreement
+									Public License Agreement.
 								</li>
 								<li>
 									Johannes Eissing, 25/11/2019, added
-									coefficient generator
+									coefficient generator.
+								</li>
+								<li>
+									Seifeldin Abouelella, 15/07/2025, created
+									this web application.
 								</li>
 							</ul>
 						</Typography>

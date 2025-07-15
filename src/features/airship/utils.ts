@@ -341,6 +341,7 @@ export const calculateInitialState = (state: AppState) => {
 }
 
 const calculateCost = (nG: number, point: PatternPoint) => {
-	const roundedS = Math.ceil(point.cumulativeS / 10) * 10
-	return roundedS * nG * 11
+	const roundedS = Math.ceil(point.cumulativeS)
+	const rawCost = roundedS * nG * 11
+	return Math.ceil(rawCost / 10) * 10
 }
